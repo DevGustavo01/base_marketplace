@@ -1,7 +1,7 @@
 /* Reset básico */
 * {
     margin: 0; /* Remove margens padrão de todos os elementos */
-    padding: 0; /* Remove padding padrão de todos os elementos */
+    padding: 0; /* Remove padding padrão de todos os elementos. */
     box-sizing: border-box; /* Inclui bordas e padding no cálculo do tamanho total do elemento */
 }
   
@@ -42,6 +42,7 @@ body {
     padding: 2rem; /* Adiciona espaçamento ao redor do grid */
 }
   
+
 .product-card {
     background: white; /* Define a cor de fundo branca para os cartões */
     border: 1px solid #ddd; /* Adiciona uma borda cinza clara */
