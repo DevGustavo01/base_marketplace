@@ -7,8 +7,8 @@ const products = [
 // Lista de produtos simulada, cada produto contém id, nome, preço e imagem.
 
 // Seleção dos elementos do DOM
-const productGrid = document.querySelector('.product-grid'); // Seleciona o container que exibe os produtos.
-const searchBar = document.querySelector('.search-bar'); // Seleciona a barra de busca.
+const productGrid = typeof document !== 'undefined' ? document.querySelector('.product-grid') : null; // Seleciona o container que exibe os produtos.
+const searchBar = typeof document !== 'undefined' ? document.querySelector('.search-bar') : null; // Seleciona a barra de busca.
 
 // Função para renderizar os produtos
 function renderProducts(productsToRender) {
@@ -28,13 +28,22 @@ function renderProducts(productsToRender) {
 }
 
 // Event Listener para a barra de busca
-searchBar.addEventListener('input', (e) => {
-    const searchValue = e.target.value.toLowerCase(); // Captura o valor digitado pelo usuário e converte para minúsculo.
-    const filteredProducts = products.filter(product =>
-        product.name.toLowerCase().includes(searchValue) // Filtra produtos cujo nome inclui o texto buscado.
-    );
-    renderProducts(filteredProducts); // Re-renderiza os produtos com base no filtro.
-});
+if (searchBar) {
+    searchBar.addEventListener('input', (e) => {
+        const searchValue = e.target.value.toLowerCase(); // Captura o valor digitado pelo usuário e converte para minúsculo.
+        const filteredProducts = products.filter(product =>
+            product.name.toLowerCase().includes(searchValue) // Filtra produtos cujo nome inclui o texto buscado.
+        );
+        renderProducts(filteredProducts); // Re-renderiza os produtos com base no filtro.
+    });
+}
 
 // Inicialização
-renderProducts(products); // Renderiza todos os produtos ao carregar a página.
+if (typeof document !== 'undefined') {
+    renderProducts(products); // Renderiza todos os produtos ao carregar a página.
+}
+
+// Exportação para testes
+if (typeof module !== 'undefined') {
+    module.exports = { renderProducts, products };
+}
